@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import './currency-form.css';
 
-export function CurrencyForm() {
+export function CurrencyForm(props) {
+  const {currencies} = props;
+
   const [amount, setAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState("");
   const [toCurrency, setToCurrency] = useState("");
@@ -25,20 +27,26 @@ export function CurrencyForm() {
     console.log(amount, fromCurrency, toCurrency);
   }
 
+  function renderCurrencies() {
+    return currencies.map(currency => {
+      return (
+        <option key={currency} value={currency}>{currency}</option>
+      );
+    });
+  }
+
   return (
     <div>
       <input type="number" min={0} value={amount} placeholder="Amount" onChange={amountHandler}/>
 
       <select value={fromCurrency} onChange={fromCurrencyHandler}>
         <option value={null}>Select currency</option>
-        <option value={'USD'}>USD</option>
-        <option value={'EUR'}>EUR</option>
+        {renderCurrencies()}
       </select>
 
       <select value={toCurrency} onChange={toCurrencyHandler}>
         <option value={null}>Select currency</option>
-        <option value={'USD'}>USD</option>
-        <option value={'EUR'}>EUR</option>
+        {renderCurrencies()}
       </select>
 
       <button type="button" onClick={onClickHandler}>Exchange</button>
