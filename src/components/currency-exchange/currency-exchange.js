@@ -7,6 +7,7 @@ import {currencies} from "../../data/currencies";
 import Container from "@material-ui/core/Container";
 import './currency-exchange.css';
 import {CurrencyApi} from "../../api/currency-api";
+import { Link } from 'react-router-dom';
 
 export function CurrencyExchange() {
   const [result, setResult] = useState("");
@@ -26,6 +27,7 @@ export function CurrencyExchange() {
       <PageTitle title="Currency Exchange"/>
       <CurrencyForm currencies={currencies} onExchangeRateSubmit={onExchangeRateSubmit}/>
       <CurrencyResult result={result}/>
+      <Link to="/chart">Go to exchange</Link>
     </Container>
   );
 }
