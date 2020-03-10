@@ -12,7 +12,7 @@ export function CurrencyChart() {
 
   useEffect(() => {
     const currencyFrom = 'BTC';
-    const currencyTo = 'EUR';
+    const currencyTo = 'USD';
     currencyApi.fetchDailyPrices(currencyFrom, currencyTo)
       .then(response => {
         if (response.errorMessage) {
