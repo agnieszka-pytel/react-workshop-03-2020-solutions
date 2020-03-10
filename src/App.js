@@ -18,7 +18,7 @@ function App() {
         </Route>
 
         <Route path="/chart">
-          <CurrencyChart />
+          <CurrencyChart/>
         </Route>
       </Switch>
     </Router>
