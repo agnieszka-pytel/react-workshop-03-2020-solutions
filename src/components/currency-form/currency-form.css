@@ -1,0 +1,11 @@
+.currency-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.currency-form__item {
+    width: 200px;
+}

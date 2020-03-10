@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
 import './currency-form.css';
+import TextField from '@material-ui/core/TextField';
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Button from "@material-ui/core/Button";
 
 export function CurrencyForm(props) {
   const {currencies} = props;
@@ -10,6 +16,7 @@ export function CurrencyForm(props) {
 
   function amountHandler(event) {
     const value = event.target.value;
+    console.log(value);
     setAmount(value);
   }
 
@@ -30,26 +37,48 @@ export function CurrencyForm(props) {
   function renderCurrencies() {
     return currencies.map(currency => {
       return (
-        <option key={currency} value={currency}>{currency}</option>
+        <MenuItem key={currency} value={currency}>{currency}</MenuItem>
       );
     });
   }
 
   return (
-    <div>
-      <input type="number" min={0} value={amount} placeholder="Amount" onChange={amountHandler}/>
+    <div className="currency-form">
+      <TextField
+        className="currency-form__item"
+        label="Amount"
+        value={amount}
+        type="number"
+        onChange={amountHandler}
+      />
 
-      <select value={fromCurrency} onChange={fromCurrencyHandler}>
-        <option value={null}>Select currency</option>
-        {renderCurrencies()}
-      </select>
+      <FormControl>
+        <InputLabel id="demo-simple-select-label">From currency</InputLabel>
+        <Select
+          className="currency-form__item"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={fromCurrency}
+          onChange={fromCurrencyHandler}
+        >
+          {renderCurrencies()}
+        </Select>
+      </FormControl>
 
-      <select value={toCurrency} onChange={toCurrencyHandler}>
-        <option value={null}>Select currency</option>
-        {renderCurrencies()}
-      </select>
+      <FormControl>
+        <InputLabel id="demo-simple-select-label">To currency</InputLabel>
+        <Select
+          className="currency-form__item"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={toCurrency}
+          onChange={toCurrencyHandler}
+        >
+          {renderCurrencies()}
+        </Select>
+      </FormControl>
 
-      <button type="button" onClick={onClickHandler}>Exchange</button>
+      <Button type="button" variant="contained" color="primary" onClick={onClickHandler}>Exchange</Button>
     </div>
   );
 }
