@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
+import {CurrencyApi} from "../../api/currency-api";
 
 export function CurrencyForm(props) {
   const {currencies} = props;
@@ -30,8 +31,13 @@ export function CurrencyForm(props) {
     setToCurrency(value);
   }
 
+   const currencyApi = new CurrencyApi();
+
   function onClickHandler() {
-    console.log(amount, fromCurrency, toCurrency);
+    currencyApi.fetchCurrencyRate(fromCurrency, toCurrency)
+      .then(response => {
+        console.log(response.rate);
+      });
   }
 
   function renderCurrencies() {
