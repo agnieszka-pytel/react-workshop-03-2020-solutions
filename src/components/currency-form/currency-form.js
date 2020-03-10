@@ -6,10 +6,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
-import {CurrencyApi} from "../../api/currency-api";
 
 export function CurrencyForm(props) {
-  const {currencies} = props;
+  const {currencies, onExchangeRateSubmit} = props;
 
   const [amount, setAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState("");
@@ -17,7 +16,6 @@ export function CurrencyForm(props) {
 
   function amountHandler(event) {
     const value = event.target.value;
-    console.log(value);
     setAmount(value);
   }
 
@@ -31,13 +29,8 @@ export function CurrencyForm(props) {
     setToCurrency(value);
   }
 
-   const currencyApi = new CurrencyApi();
-
   function onClickHandler() {
-    currencyApi.fetchCurrencyRate(fromCurrency, toCurrency)
-      .then(response => {
-        console.log(response.rate);
-      });
+    onExchangeRateSubmit(fromCurrency, toCurrency, amount);
   }
 
   function renderCurrencies() {
