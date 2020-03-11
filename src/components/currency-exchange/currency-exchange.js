@@ -27,7 +27,7 @@ export function CurrencyExchange() {
       <PageTitle title="Currency Exchange"/>
       <CurrencyForm currencies={currencies} onExchangeRateSubmit={onExchangeRateSubmit}/>
       <CurrencyResult result={result}/>
-      <Link to="/chart">Go to exchange</Link>
+      <Link to="/chart">Go to chart</Link>
     </Container>
   );
 }

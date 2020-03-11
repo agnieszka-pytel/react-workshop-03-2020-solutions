@@ -7,7 +7,7 @@ export function CurrencyChart() {
   return (
     <Container maxWidth="md">
       <PageTitle title="Currency Chart"/>
-      <Link to="/">Go to chart</Link>
+      <Link to="/">Go to exchange</Link>
     </Container>
   );
 }
